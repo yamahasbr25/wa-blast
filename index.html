@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirim Pesan WhatsApp - Yamaha Dealer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #25D366;
+        }
+        
+        .main-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #25D366;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.2);
+        }
+        
+        .message-preview {
+            background-color: #f9f9f9;
+            border: 1px solid #eaeaea;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 10px;
+            white-space: pre-line;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: #128C7E;
+        }
+        
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+        
+        .btn-whatsapp i {
+            font-size: 1.3rem;
+        }
+        
+        .info-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #25D366;
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 4px;
+        }
+        
+        .info-box h3 {
+            margin-bottom: 10px;
+            color: #128C7E;
+        }
+        
+        .error-message {
+            color: #e53935;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <h1>Kirim Pesan WhatsApp</h1>
+            <p>Yamaha Dealer - Penawaran Spesial</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="form-group">
+                <label for="phone">Nomor WhatsApp Tujuan</label>
+                <input type="text" id="phone" placeholder="Contoh: 081254871838 atau 81254871838">
+                <div class="error-message" id="error-message">Format nomor tidak valid. Gunakan format: 08XXXXXXXXX atau 8XXXXXXXXX</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Pratinjau Pesan</label>
+                <div class="message-preview" id="message-preview">
+Selamat Siang Pak/Ibu, Maaf mengganggu waktunya 🙏. 
+
+Kami dari Dealer Yamaha, Ingin menawarkan pembelian motor Yamaha, baik cash maupun kredit dengan promo DP murah (mulai dari 100 rb) + angsuran ringan. 
+
+Bisa tukar tambah motor lama all merek (honda, yamaha dll).
+
+Jangan ragu-ragu membalas pesan ini jika berminat, Terima kasih.
+                </div>
+            </div>
+            
+            <a href="#" class="btn btn-whatsapp" id="send-button">
+                <i class="fab fa-whatsapp"></i> Kirim Pesan WhatsApp
+            </a>
+            
+            <div class="info-box">
+                <h3>Informasi Penting</h3>
+                <p>Pastikan nomor WhatsApp yang dimasukkan sudah benar. Nomor akan otomatis dikonversi ke format internasional (+62).</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 Yamaha Dealer. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('phone');
+            const errorMessage = document.getElementById('error-message');
+            const sendButton = document.getElementById('send-button');
+            
+            // Fungsi untuk memvalidasi dan memformat nomor telepon
+            function formatPhoneNumber(phone) {
+                // Hapus semua karakter non-digit
+                let cleaned = phone.replace(/\D/g, '');
+                
+                // Jika nomor dimulai dengan 0, ganti dengan 62
+                if (cleaned.startsWith('0')) {
+                    cleaned = '62' + cleaned.substring(1);
+                }
+                // Jika nomor dimulai dengan 8 (tanpa 0), tambahkan 62
+                else if (cleaned.startsWith('8')) {
+                    cleaned = '62' + cleaned;
+                }
+                // Jika nomor sudah dimulai dengan 62, biarkan saja
+                
+                return cleaned;
+            }
+            
+            // Fungsi untuk memvalidasi nomor telepon
+            function validatePhoneNumber(phone) {
+                // Hapus semua karakter non-digit
+                const cleaned = phone.replace(/\D/g, '');
+                
+                // Validasi: harus berisi 10-14 digit (sesuai format Indonesia)
+                if (cleaned.length < 10 || cleaned.length > 14) {
+                    return false;
+                }
+                
+                // Validasi: harus dimulai dengan 0 atau 8 atau 62
+                if (!/^(0|8|62)/.test(cleaned)) {
+                    return false;
+                }
+                
+                return true;
+            }
+            
+            // Event listener untuk input nomor telepon
+            phoneInput.addEventListener('input', function() {
+                const phone = phoneInput.value;
+                
+                if (phone === '') {
+                    errorMessage.style.display = 'none';
+                    sendButton.href = '#';
+                    return;
+                }
+                
+                if (validatePhoneNumber(phone)) {
+                    errorMessage.style.display = 'none';
+                    const formattedPhone = formatPhoneNumber(phone);
+                    const message = document.getElementById('message-preview').innerText;
+                    const encodedMessage = encodeURIComponent(message);
+                    sendButton.href = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
+                } else {
+                    errorMessage.style.display = 'block';
+                    sendButton.href = '#';
+                }
+            });
+            
+            // Event listener untuk tombol kirim
+            sendButton.addEventListener('click', function(e) {
+                const phone = phoneInput.value;
+                
+                if (!validatePhoneNumber(phone)) {
+                    e.preventDefault();
+                    errorMessage.style.display = 'block';
+                    phoneInput.focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
